@@ -43,12 +43,12 @@
         <aside id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn d-block d-sm-none d-md-none" onclick="closeNav()">&times;</a>
             <div class="row">
-                <img class="col-3 ml-auto p-3" id="logo" src="images/logo1.png">
+                <img class="col-3 ml-auto p-3" id="logo" src="{{asset('images/logo1.png')}}">
                 <h1 class="col-7 mx-auto p-3">PicSite</h1>
             </div>
             <hr class="linea mx-auto">
             <div class="row">
-                <h5 class="mx-auto">{{trans('messages.bienvenido')}},  <span><a href="https://localhost/Reto-Final/prueba/public/usuario">{{Auth::user()->nickname}}</a></span></h5>
+                <h5 class="mx-auto">{{trans('messages.bienvenido')}},  <span><a href="{{route('usuario')}}">{{Auth::user()->nickname}}</a></span></h5>
             </div>
             <div class="row">
                 <form method="POST" action="{{ route('logout') }}">
@@ -62,7 +62,7 @@
                 </form>
             </div>
             <div class="row">
-                <a href="https://localhost/Reto-Final/prueba/public/spot" class="btn btn-secondary mx-auto">{{trans('messages.nuevospot')}}</a><br>
+                <a href="{{route('nuevoSpot')}}" class="btn btn-secondary mx-auto">{{trans('messages.nuevospot')}}</a><br>
             </div>
             <br>
             <div class="row">
@@ -85,9 +85,9 @@
             <div class="contenidoAside" style="height: 20vh">
                 <a><b>{{ trans('messages.idioma') }}</b></a>
                 <ul>
-                    <li><a href="{{ url('lang', ['en']) }}"><img class="idiomaBandera" src="images/banderaIngles.png"></a></li>
-                    <li><a href="{{ url('lang', ['es']) }}"><img class="idiomaBandera" src="images/banderaCastellano.jpg"></a></li>
-                    <li><a href="{{ url('lang', ['eus']) }}"><img class="idiomaBandera" src="images/banderaEsukadi.png"></a></li>
+                    <li><a href="{{ url('lang', ['en']) }}"><img class="idiomaBandera" src="{{asset('images/banderaIngles.png')}}"></a></li>
+                    <li><a href="{{ url('lang', ['es']) }}"><img class="idiomaBandera" src="{{asset('images/banderaCastellano.jpg')}}"></a></li>
+                    <li><a href="{{ url('lang', ['eus']) }}"><img class="idiomaBandera" src="{{asset('images/banderaEsukadi.png')}}"></a></li>
                 </ul>
             </div>
         </aside>

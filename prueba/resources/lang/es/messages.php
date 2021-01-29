@@ -1,7 +1,7 @@
 <?php
 
 return [
-
+    //Landing Page
     'logo' => 'Un sitio de interés',
     'idioma' =>'Cambiar el idioma',
     'ideat' =>'¿En que consiste PicSite?',
@@ -13,15 +13,20 @@ return [
     'parrafoi3'=>' En nuestra página podrás compartir lugares que te parezcan interesantes.
     Además, podrás comentar otros spots y compartir las fotos que hayas tomado en el lugar. Se respetuoso y disfruta.',
     'mostrar'=>'mostrar',
+        //Carrusel
     'conp'=>'No compartas tu contraseña personal',
     'con1'=>'Consejo del dia.',
     'cons'=>'Cuida el contenido que subes.',
     'con2'=>'Compartamos un sitio con seguridad y el fin de disfrutarlo.',
     'cont'=>'¿Buscando un spot para fotografiar?',
     'con3'=>'Disfruta de cada lugar que visites y no olvides cuidarlo.',
+        //Cajas
     'inicios' => 'Iniciar Sesion',
     'einvitado' =>'Entrar como Invitado',
     'regist' =>'Registrarse',
+    'explorar'=>'Explorador',
+    'logout'=>'Cerrar Sesión',
+        //Forms
     'nombre' => 'Nombre',
     'apellido' => 'Apellido',
     'ciudad' => 'Ciudad',
@@ -46,7 +51,9 @@ return [
     //Explorador Spots
     'bienvenido' => 'Bienvenido',
     'nuevospot' => 'Nuevo Spot',
-    'mio' =>'Mis Spots',
+    //expl-crear
+    'mio' =>'Administrar mis Spots',
+    'volver'=>'Volver',
     //Crear Spot
     'crearnombre' => 'Nombre',
     'creardescripcion' =>'Descripción',

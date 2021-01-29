@@ -51,11 +51,11 @@
                 <h5 class="mx-auto">{{trans('messages.bienvenido')}},  {{Auth::user()->nickname}}</h5>
             </div>
             <div class="row">
-                <a href="https://localhost/Reto-Final/prueba/public/spot" class="btn btn-secondary mx-auto">{{trans('messages.nuevospot')}}</a><br>
+                <a href="{{route('nuevoSpot')}}" class="btn btn-secondary mx-auto">{{trans('messages.nuevospot')}}</a><br>
             </div>
             <br>
             <div class="row">
-                <a href="https://localhost/Reto-Final/prueba/public/dashboard" class="btn btn-secondary mx-auto">Volver</a>
+                <a href="{{route('dashboard')}}" class="btn btn-secondary mx-auto">Volver</a>
             </div>
             <div class="contenidoAside" style="height: 20vh">
                 <a><b>{{ trans('messages.idioma') }}</b></a>
@@ -73,13 +73,13 @@
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Perfil</a>
                         <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Spots</a>
-                        <a class="nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Configuración</a>
+                        <a class="nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Editar cuenta</a>
                     </div>
-                </nav>
+                </nav>  
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                        <h5>{{Auth::user()->name}}</h5>
-                        <p>Nombre y apellido: {{Auth::user()->name}} {{Auth::user()->apellido}}</p>
+                        <h5>{{Auth::user()->name}} {{Auth::user()->apellido}}</h5>
+                        <p>Nombre y apellido: {{Auth::user()->name}} </p>
                         <p>Correo: {{Auth::user()->email}}</p>
                         <p>Ciudad: {{Auth::user()->city}}</p>
                         <p>Fecha de nacimiento: {{Auth::user()->fecha}}</p>
@@ -88,7 +88,7 @@
                         <div class="row">
                             @foreach($spots as $spot)
                                 <a href="{{route('info', $spot->id)}}" class="redirigir col-3 m-0 p-0 seleccion">
-                                <img class="imagenSelec" src="{{asset($spot->url)}}">
+                                <img class="imagenSelec" src="{{ asset($spot->url) }}">
                                 <div class="contenido">
                                     <h2>{{($spot->name)}}</h2>
                                 </div>
@@ -127,6 +127,11 @@
                             <div class="row">
                                 <input class="btn btn-secondary mx-auto col-4" id="crear" type="submit" value="Actualizar cambios"/>
                             </div>
+                        </form>
+                        <form action="{{route('destroyU', Auth::user()->id)}}" method="POST" class="d-inline" >
+                            @method('DELETE')
+                            @csrf
+                            <button id="boton-eliminar" class="btn btn-danger" type="submit">Eliminar cuenta</button>
                         </form>
                     </div>
                 </div>

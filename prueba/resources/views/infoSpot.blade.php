@@ -47,6 +47,7 @@
                 <h1 class="col-7 mx-auto p-3">PicSite</h1>
             </div>
             <hr class="linea mx-auto">
+            
             <div class="row">
                 <h5 class="mx-auto">{{trans('messages.bienvenido')}},  {{Auth::user()->nickname}}</h5>
             </div>
@@ -109,9 +110,8 @@
                                 </div>
                             </div>
                         </div>
-                    
                     </div>
-                    <script>
+            <script>
             var mymap = L.map('mapid').setView([51.505, -0.09], 13);
             
             L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {

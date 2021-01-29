@@ -34,11 +34,6 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('isUser', function($users) {
             return $users->rol == 'Usuario';
         });
- 
-        /* definir el rol de usuario */
-        Gate::define('isPicUser', function($users) {
-            return $users->rol == 'UsuarioPic';
-        });
         
     }
 }

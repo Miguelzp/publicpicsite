@@ -46,7 +46,11 @@ Route::get('/home', 'CasaController@index')->name('home')->middleware('verified'
 // LAS SIGUIENTES RUTAS REQUIEREN DE AUTENTIFICACIÓN
 Auth::routes(['verify'=> true]);
 
+
 Route::group([ 'middleware'=>'auth'], function(){
+
+    Route::get('/dashboard', [\App\Http\Controllers\SpotController::class, 'index'])->name("dashboard");
+
     //ruta que te redirige a la vista de tus spots
     Route::get('/mySpots',[\App\Http\Controllers\SpotController::class, 'mios'])->name('mios');
 
@@ -59,31 +63,25 @@ Route::group([ 'middleware'=>'auth'], function(){
     Route::get('/mySpots/{id}/edit', '\App\Http\Controllers\SpotController@edit')->name('edit');
     Route::put('/update/{id}', '\App\Http\Controllers\SpotController@update')->name('upadte');
     
-    Route::get('/dashboard', [\App\Http\Controllers\SpotController::class, 'index'])->name("dashboard");
-    
     //rutas para la vista de perfil de usuario
     Route::get('/perfil', [\App\Http\Controllers\SpotController::class, 'perfil'])->name("usuario");
+
+    //Rutas para la edicion y el borrado de los usuarios
+    Route::get('/users/{id}/edit', '\App\Http\Controllers\SpotController@editU')->name('editU');
     Route::put('/updateU/{id}', '\App\Http\Controllers\SpotController@updateU')->name('upadteU');
+    Route::delete('/destroyU/{id}', 'SpotController@destroyU')->name("destroyU");
     
-    /*
-    RUTAS PARA ADMINISTRADOR O USUARIO
-    */
-    Route::get('/administrar', function () {
-        return view('admin');
-    });
+    
+    /*RUTAS PARA ADMINISTRADOR O USUARIO*/
+    Route::get('configuracion/administrador', 'AdminController@index');
 
     Route::get('/prueba', function(){
-        if(Auth::user()->rol == 'Administrador'){
-            return Redirect::to('buscar/admin');
+        if(Auth::user()->rol == 'administrador'){
+            return Redirect::to('configuracion/administrador');
         }
         else{
-            return Redirect::to('dashboard');
+            return Redirect::to('/mySpots');
         }
-    });
+    })->name('configuracion');
 
 });
-
-
-
-
-

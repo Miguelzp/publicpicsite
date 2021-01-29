@@ -12,19 +12,6 @@
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
-
-        <!--Script para introducir el pluggin de verificacion de eliminar-->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>    
-        @if (session('eliminado')== 'ok')
-            <script>
-                Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
-                'success'
-                )
-            </script>
-        @endif
-
         <script>
            window.onload = iniciar;
             let sizze = window.screen.width;
@@ -48,24 +35,7 @@
                 document.getElementById("page-content-wrapper").style.marginLeft= "0";
             }
 
-            /* Script para la confirmación de eliminación*/
-            boton = document.getElementById("boton-eliminar");
-            boton.submit(function(e)){
-                e.preventDefault();
-                Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                if (result.isConfirmed) {
-                    
-                }
-                })
-            }
+            
             
         </script>
     </head>
@@ -81,8 +51,8 @@
                 <h5 class="mx-auto">{{trans('messages.bienvenido')}}</h5>
             </div>
             <div class="row">
-                <a href="https://localhost/Reto-Final/prueba/public/spot" class="btn btn-secondary mx-auto">{{trans('messages.nuevospot')}}</a><br>
-            </div>
+                    <a href="{{url('/')}}" class="btn btn-secondary col-4 mx-auto">{{trans('messages.volver')}}</a><br>
+                </div>
             <br>
             <div class="row">
                 <div class="btn-group mx-auto">
@@ -97,6 +67,8 @@
                     </div>
                 </div>
             </div>
+            <br>
+            <hr class="linea mx-auto">
             <div class="contenidoAside" style="height: 20vh">
                 <a><b>{{ trans('messages.idioma') }}</b></a>
                 <ul>

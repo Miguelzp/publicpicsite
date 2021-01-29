@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
-use Storage;
 
-use Illuminate\Http\Request;
+use Storage;
 use App\Models\Spot;
 use App\Models\User;
+use Illuminate\Http\Request;
+
 
 class SpotController extends Controller
 {
@@ -23,7 +24,7 @@ class SpotController extends Controller
         $usuario = Auth::user()->id;
         $spots = Spot::all()->where('user_id', $usuario);
 
-        return view('misSpots', ['spots' => $spots]);
+        return view('mySpots', ['spots' => $spots]);
 
     }
     public function store(Request $request){
@@ -63,6 +64,9 @@ class SpotController extends Controller
         Storage::delete($url);
 
         $spot->delete();
+        if(Auth::user()->rol == "administrador"){
+            return redirect()->route('configuracion');
+        }
         return redirect()->route('mios');
         
     }
@@ -76,16 +80,35 @@ class SpotController extends Controller
 
         $spot = Spot::find($id);
         $spot->update($request->all());
-
+        if(Auth::user()->rol == "administrador"){
+            return redirect()->route('configuracion');
+        }
         return redirect('mySpots');  
     }
 
+    //Para editar y borrar los usuarios
+    public function editU($id){
+
+        $user = User::find($id);
+        return view('editarU', compact('user'));  
+    }
     public function updateU(Request $request, $id){
 
-        $spot = User::find($id);
-        $spot->update($request->all());
-
+        $user = User::find($id);
+        $user->update($request->all());
+        if(Auth::user()->rol == "administrador"){
+            return redirect()->route('configuracion');
+        }
         return redirect('usuario');  
+    }
+    public function destroyU($id){
+        
+        $usuario = User::find($id);
+        $usuario->delete();
+        if(Auth::user()->rol == "administrador"){
+            return redirect()->route('configuracion');
+        }
+        return redirect()->route('/');
     }
 
     public function perfil(){

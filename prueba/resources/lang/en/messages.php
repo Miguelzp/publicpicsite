@@ -1,7 +1,7 @@
 <?php
 
 return [
-
+    //Landing Page
     'logo' => 'A site of interest',
     'idioma' => 'Change language',
     'ideat' => 'What is PicSite about?',
@@ -13,15 +13,20 @@ return [
     'parrafoi3' => 'On our page you can share places that you find interesting.
     In addition, you can comment on other spots and share the photos you have taken in the place. Be respectful and enjoy. ',
     'mostrar' => 'show',
+        //carrusel
     'conp' => 'Do not share your personal password',
     'con1' => 'Tip of the day.',
     'cons' => 'Take care of the content you upload.',
     'con2' => "Let's share a site safely and in order to enjoy it.",
     'cont' => 'Looking for a spot to photograph?',
     'con3' => "Enjoy every place you visit and don't forget to take care of it.",
+        //cajas
     'inicios' => 'Login',
     'einvitado' => 'Enter as Guest',
     'regist' =>'Sing in',
+    'explorar'=>'Explorer',
+    'logout'=>'Logout',
+        //Forms
     'nombre' => 'Name',
     'apellido' => 'Last name',
     'ciudad' => 'City',
@@ -46,7 +51,9 @@ return [
     //Explorador Spots
     'bienvenido' => 'Welcome',
     'nuevospot' => 'New Spot',
-    'mio' =>'My Spots',
+    //expl-crear
+    'mio' =>'Admin My Spots',
+    'volver'=>'Go back',
     //Crear Spot
     'crearnombre' => 'Name',
     'creardescripcion' =>'Description',

@@ -1,6 +1,6 @@
 <?php
 return[
-
+    //Landing Page
     'logo' => 'Interesgune bat',
     'idioma' => 'Hizkuntza aldatu',
     'ideat' => 'Zer da PicSite?',
@@ -11,16 +11,19 @@ return[
     'mas' => 'erakutsi gehiago...',
     'parrafoi3' => 'Gure orrian interesgarriak iruditzen zaizkizun lekuak parteka ditzakezu.
     Horrez gain, beste leku batzuk iruzkindu eta tokian ateratako argazkiak partekatu ditzakezu. Izan errespetua eta gozatu. ',
-    'mostrar' => 'show',
+    'mostrar' => 'erakutsi',
+        //Carrusel
     'conp' => 'Ez partekatu zure pasahitz pertsonala',
     'con1' => 'Eguneko aholkua.',
     'cons' => 'Zaindu igotzen duzun edukia.',
     'con2' => 'Partekatu dezagun gune bat segurtasunez eta gozatu ahal izateko.',
     'cont' => 'Argazkia ateratzeko lekuren baten bila?',
     'con3' => 'Gozatu bisitatzen duzun leku guztiaz eta ez ahaztu hura zaintzeaz.',
+        //Cajas
     'inicios' => 'Saioa hasi',
     'einvitado' => 'Sartu gonbidatu gisa',
     'regist' => 'Erregistratu',
+        //Forms
     'nombre' => 'Izena',
     'apellido' => 'Abizena',
     'ciudad' => 'Hiria',
@@ -45,7 +48,9 @@ return[
     //Explorador Spots
     'bienvenido' => 'Ongi Etorri',
     'nuevospot' => 'Spot berria sortu',
-    'mio' =>'Nire Spots',
+    'mio' =>'Konfigurazioa',
+    //expl-crear
+    
     //Crear Spot
     'crearnombre' => 'Izena',
     'creardescripcion' =>'deskribapena',

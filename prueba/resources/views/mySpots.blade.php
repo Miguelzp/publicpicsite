@@ -1,17 +1,21 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>PicSite</title>
         <!--Linkear los estilos de la página-->
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/estilosIndex.css">
-        <!--Linkear los scripts de bootstrap-->
+        <!--Linkear los scipts de bootstrap-->
         <script src="js/jquery-3.4.1.min.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>    
+        <!--Script para introducir el pluggin de verificacion de eliminar-->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script>
-            window.onload = iniciar;
+           window.onload = iniciar;
             let sizze = window.screen.width;
 
             function iniciar(){
@@ -32,10 +36,11 @@
                 document.getElementById("mySidenav").style.width = "0";
                 document.getElementById("page-content-wrapper").style.marginLeft= "0";
             }
+
         </script>
     </head>
     <body id="wrapper">
-    <aside id="mySidenav" class="sidenav">
+        <aside id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn d-block d-sm-none d-md-none" onclick="closeNav()">&times;</a>
             <div class="row">
                 <img class="col-3 ml-auto p-3" id="logo" src="images/logo1.png">
@@ -50,7 +55,11 @@
             </div>
             <br>
             <div class="row">
-                <div class=" mx-auto">
+                <a href="{{route('dashboard')}}" class="btn btn-secondary mx-auto">{{trans('messages.volver')}}</a><br>
+            </div>
+            <br>
+            <div class="row">
+                <div class="btn-group mx-auto">
                     <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">Ordenar por:</button>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#">Más Antiguos</a>
@@ -62,26 +71,18 @@
                     </div>
                 </div>
             </div>
-            <br>
-                <div class="row">
-                    <a href="{{url('/')}}" class="btn btn-secondary mx-auto">{{trans('messages.volver')}}</a><br>
-                </div>
-            <br>
             <div class="row">
-                <a href="{{route('configuracion')}}" class="btn btn-secondary mx-auto">{{trans('messages.mio')}}</a><br>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <x-dropdown-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Logout') }}
+                    </x-dropdown-link>
+                </form>
             </div>
-            <br>
-            <div class="row">
-                <div class="mx-auto btn btn-secondary">
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <x-dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
-                            {{ __('Logout') }}
-                        </x-dropdown-link>
-                    </form>
-                </div>
-            </div>
-                <hr class="linea mx-auto">
+            <hr class="linea mx-auto">
             <div class="contenidoAside" style="height: 20vh">
                 <a><b>{{ trans('messages.idioma') }}</b></a>
                 <ul>
@@ -101,20 +102,32 @@
             </section>
             <section class="container">
                 <div class="row">
-                    @foreach($spots as $spot)
-                        <a href="{{route('info', $spot->id)}}" class="redirigir col-3 m-0 p-0 seleccion">
-                        <img class="imagenSelec" alt="error al cargar" src="storage\app\public\imagenes\cFoZmWHQ4gataccOzTGhDTNx4uV0RtClSZF4OdqG.jpg">
-                        <div class="contenido">
-                            <h2>{{($spot->name)}}</h2>
+                    @foreach ($spots as $spot)
+                    <div class="col-3">
+                        <div class="card m-0 p-0">
+                            <a href="{{route('info', $spot)}}" class="redirigir col-3 m-0 p-0 seleccion">
+                                <img class="img-fluid imagenSelec" src="{{asset($spot->url)}}">
+                                <div class="contenido">
+                                    <h2>{{($spot->name)}}</h2>
+                                </div>
+                            </a>
+                            <div class="card-footer">
+                                <a href="{{route('edit', $spot)}}" class="btn tbn-primary">Editar</a>
+                                <form action="{{route('destroy', $spot)}}" method="POST" class="d-inline" >
+                                    @method('DELETE')
+                                    @csrf
+                                    <button id="boton-eliminar" class="btn btn-danger" type="submit">Eliminar</button>
+                                </form>
+                            </div>
                         </div>
-                    </a>
+                    </div>
                     @endforeach 
                     <a href="{{route('nuevoSpot')}}" class="redirigir col-3 m-0 p-0 seleccion">
-                        <img class="imagenSelec" src="{{asset('images/carretera2.jpg')}}">
+                        <img class="imagenSelec" src="images/carretera2.jpg">
                         <div class="contenido">
                             <h2>Publicar un Spot</h2>
                         </div>
-                    </a>       
+                    </a>         
                 </div>
             </section>
         </main>

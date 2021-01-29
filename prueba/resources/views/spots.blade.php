@@ -48,8 +48,16 @@
             </div>
             <hr class="linea mx-auto">
             <div class="row">
-                <h5 class="mx-auto">{{trans('messages.bienvenido')}},  <span><a href="https://localhost/Reto-Final/prueba/public/usuario">{{Auth::user()->nickname}}</a></span></h5>
+                <h5 class="mx-auto">{{trans('messages.bienvenido')}},  <span><a href="https://localhost/Reto-Final/prueba/public/usuario" class="text-dark">{{Auth::user()->nickname}}</a></span></h5>
             </div>
+            <div class="row">
+                <a href="{{route('dashboard')}}" class="btn btn-secondary mx-auto">{{trans('messages.volver')}}</a><br>
+            </div>
+            <br>
+            <div class="row">
+                <a href="{{route('mios')}}" class="btn btn-secondary mx-auto">{{trans('messages.mio')}}</a><br>
+            </div>
+            <br>
             <div class="row">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
@@ -61,27 +69,7 @@
                     </x-dropdown-link>
                 </form>
             </div>
-            <div class="row">
-                <a href="{{route('dashboard')}}" class="btn btn-secondary mx-auto">{{trans('messages.voler')}}</a><br>
-            </div>
-            <br>
-            <div class="row">
-                <a href="{{route('mios')}}" class="btn btn-secondary mx-auto">{{trans('messages.mio')}}</a><br>
-            </div>
-            <br>
-            <div class="row">
-                <div class="btn-group mx-auto">
-                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">Ordenar por:</button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Más Antiguos</a>
-                        <a class="dropdown-item" href="#">Más Recientes</a>
-                        <hr class="dropdown-divider">
-                        <a class="dropdown-item" href="#">Montaña</a>
-                        <a class="dropdown-item" href="#">Animales</a>
-                        <a class="dropdown-item" href="#">Lugares Abandonados</a>
-                    </div>
-                </div>
-            </div>
+            <hr class="linea mx-auto">
             <div class="contenidoAside" style="height: 20vh">
                 <a><b>{{ trans('messages.idioma') }}</b></a>
                 <ul>
@@ -158,35 +146,9 @@
                     </form>
                 </article>
             </section>
-            <section style="margin-left: 20px">
-                <article>
-                    <h3>Lista de tareas</h3>
-                    <fieldset>
-                        <legend>Tareas</legend>
-                        <table>
-                        <tr>
-                            <td><b>ID</b></td>
-                            <td><b>Nombre</b></td>
-                            <td><b>Descripcion</b></td>
-                            <td><b>latitud</b></td>
-                            <td><b>longitud</b></td>
-                        </tr> 
-                        @foreach($spots as $spot)
-                        <tr>
-                            <td>{{$spot->id}}</td>
-                            <td>{{$spot->name}}</td>
-                            <td>{{$spot->descripcion}}</td>
-                            <td>{{$spot->latitud}}</td>
-                            <td>{{$spot->longitud}}</td>
-                        </tr> 
-                        @endforeach
-                        </table>
-                    </fieldset>
-                </article>
-            </section>
         </div>
         <script>
-            var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+            var mymap = L.map('mapid').setView([43.319, -1.99], 13);
             
             L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
                 maxZoom: 18,

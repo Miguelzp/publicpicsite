@@ -54,10 +54,10 @@
             <div class="row">
                 <a href=".Foo" class="btn btn-default col-4 mx-auto" data-toggle="collapse">{{trans('messages.mas')}}</a>
             </div>
-            <hr class="mx-auto linea">
             <div class="collapse Foo">
                 <p class="col-10 mx-auto text-justify text-dark">{{trans('messages.parrafoi3')}}</p>
             </div>
+            <hr class="mx-auto linea">
             <div class="contenidoAside" style="height: 20vh">
                 <a><b>{{ trans('messages.idioma') }}</b></a>
                 <ul>
@@ -75,7 +75,7 @@
                 <h3 class="imagotipo mx-auto">{{ trans('messages.logo') }}</h3>
                 <span class="d-block d-sm-block d-md-none" id="boton" onclick="openNav()">&#9776;</span>
             </article>
-            <article class="page-content container no-gutter">
+            <article class="page-content no-gutter">
                 <div class="row">
                     <section id="carrusel" class="col-12   m-0 p-0 container-fluid">
                         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
@@ -118,7 +118,8 @@
                             </a>
                         </div>
                     </section>
-                    
+                    @if (Auth::guest())
+
                     <section class="seleccion caja col-12 col-md-4 p-0 m-0 text-center">
                         <a class="redirigir" data-toggle="modal" data-target="#modalSesion">
                             <img class="imagenSelec" src="images/pared.jpg">
@@ -144,6 +145,30 @@
                             </div>
                         </a>
                     </section>
+                    @else
+                    <section class="seleccion caja col-12 col-md-6 p-0 m-0 text-center ">
+                            <img class="imagenSelec" src="images/pared.jpg">
+                            <div class="contenido">
+                            <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+
+                            <x-dropdown-link :href="route('logout')"
+                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                                <div class="contenido">
+                                    <h2>{{trans('messages.logout')}}</h2>
+                                </div>
+                            </x-dropdown-link>
+                        </form>
+                            </div>
+                    </section>
+                    <section class="seleccion caja col-12 col-md-6 p-0 m-0 text-center ">
+                            <img class="imagenSelec" src="images/carretera.jpg">
+                            
+                                <a href="{{route('dashboard')}}"><h2 class="contenido">{{trans('messages.explorar')}}</h2></a>
+                            
+                    </section>
+                    @endif
                 </div>
             </article>
         </main>
